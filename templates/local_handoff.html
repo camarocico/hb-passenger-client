@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Run ORCA on Habrok</title>
+  </head>
+  <body>
+    <main id="local-handoff"
+          data-portal-prepare-url="{{ portal_prepare_url }}"
+          data-local-origin="{{ local_handoff_origin }}">
+      <h1>Run ORCA on Habrok</h1>
+      <p>Select one ORCA <code>.inp</code> file. It will be sent by this browser
+         to the authenticated OOD preparation page. This local service does not
+         save the file or submit a job.</p>
+      <p>OOD will let you choose a resource profile, review the exact input,
+         and confirm the Slurm submission.</p>
+      <form id="handoff-form">
+        <p>
+          <label for="input-file">ORCA input file</label>
+          <input id="input-file" type="file" accept=".inp" required>
+          <small>Maximum file size: 10 MiB.</small>
+        </p>
+        <button id="run-button" type="submit">Run on Habrok</button>
+      </form>
+      <p id="handoff-status" role="status" aria-live="polite"></p>
+      <p id="review-link-container" hidden>
+        <a id="review-link" href="">Open OOD review page</a>
+      </p>
+    </main>
+    <script src="{{ url_for('static', filename='local_handoff.js') }}" defer></script>
+  </body>
+</html>
